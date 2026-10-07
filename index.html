@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>标准计算器 - 前后端分离</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="calculator">
+    <!-- 顶部工具条 -->
+    <div class="toolbar">
+      <span class="toolbar-title">标准计算器</span>
+      <button id="hist-btn" class="hist-btn">历史</button>
+    </div>
+
+    <!-- 显示区：表达式输入 + 结果 -->
+    <div class="display">
+      <input id="expr-input" class="expr-input" type="text"
+             autocomplete="off" spellcheck="false"
+             placeholder="输入表达式，如 (1+2)*3" aria-label="表达式输入">
+      <div id="main-label" class="main">0</div>
+    </div>
+
+    <!-- 历史面板 -->
+    <div id="hist-panel" class="hist-panel hidden">
+      <div class="hist-head">
+        <span class="hist-title">计算历史</span>
+        <div class="hist-actions">
+          <button id="hist-clear" class="hist-action">清空历史</button>
+          <button id="hist-close" class="hist-action">关闭</button>
+        </div>
+      </div>
+      <div id="hist-list" class="hist-list"></div>
+    </div>
+
+    <!-- 按键区（5 列） -->
+    <div class="keys">
+      <button data-key="MC" class="key func">MC</button>
+      <button data-key="MR" class="key func">MR</button>
+      <button data-key="M+" class="key func">M+</button>
+      <button data-key="M-" class="key func">M-</button>
+      <span class="key ghost"></span>
+
+      <button data-key="(" class="key func">(</button>
+      <button data-key=")" class="key func">)</button>
+      <button data-key="CE" class="key func">CE</button>
+      <button data-key="C" class="key func">C</button>
+      <button data-key="BS" class="key func">⌫</button>
+
+      <button data-key="%" class="key func">%</button>
+      <button data-key="1/x" class="key func">1/x</button>
+      <button data-key="x²" class="key func">x²</button>
+      <button data-key="√" class="key func">√</button>
+      <button data-key="∛x" class="key func">∛x</button>
+
+      <button data-key="7" class="key digit">7</button>
+      <button data-key="8" class="key digit">8</button>
+      <button data-key="9" class="key digit">9</button>
+      <button data-key="÷" class="key op">÷</button>
+      <span class="key ghost"></span>
+
+      <button data-key="4" class="key digit">4</button>
+      <button data-key="5" class="key digit">5</button>
+      <button data-key="6" class="key digit">6</button>
+      <button data-key="×" class="key op">×</button>
+      <span class="key ghost"></span>
+
+      <button data-key="1" class="key digit">1</button>
+      <button data-key="2" class="key digit">2</button>
+      <button data-key="3" class="key digit">3</button>
+      <button data-key="-" class="key op">−</button>
+      <span class="key ghost"></span>
+
+      <button data-key="+/-" class="key func">+/−</button>
+      <button data-key="0" class="key digit">0</button>
+      <button data-key="." class="key digit">.</button>
+      <button data-key="+" class="key op">+</button>
+      <span class="key ghost"></span>
+
+      <button data-key="=" class="key eq">=</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

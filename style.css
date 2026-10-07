@@ -1,0 +1,269 @@
+/* 计算器前端样式（深色标准布局，与参考图一致） */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #17181a;
+  font-family: "Segoe UI", "Microsoft YaHei", system-ui, sans-serif;
+}
+
+.calculator {
+  width: 420px;
+  max-width: 96vw;
+  background: #202124;
+  border-radius: 14px;
+  padding: 18px 14px 14px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* ---------- 顶部工具条 ---------- */
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px 10px;
+}
+
+.toolbar-title {
+  color: #9aa0a6;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.hist-btn {
+  border: none;
+  border-radius: 6px;
+  padding: 5px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+  background: #3c4043;
+  cursor: pointer;
+  transition: background-color 0.12s ease;
+}
+
+.hist-btn:hover { background: #4a4e52; }
+.hist-btn:active { filter: brightness(0.9); }
+
+/* ---------- 历史面板 ---------- */
+.hist-panel {
+  background: #2a2d31;
+  border-radius: 10px;
+  margin: 0 0 8px;
+  overflow: hidden;
+  max-height: 260px;
+  display: flex;
+  flex-direction: column;
+}
+
+.hist-panel.hidden { display: none; }
+
+.hist-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-bottom: 1px solid #3c4043;
+}
+
+.hist-title {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.hist-actions { display: flex; gap: 6px; }
+
+.hist-action {
+  border: none;
+  border-radius: 5px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #ffffff;
+  background: #5f6368;
+  cursor: pointer;
+  transition: background-color 0.12s ease;
+}
+
+.hist-action:hover { background: #6d7278; }
+.hist-action:active { filter: brightness(0.9); }
+
+.hist-list {
+  overflow-y: auto;
+  padding: 4px 8px;
+  list-style: none;
+}
+
+.hist-empty {
+  color: #9aa0a6;
+  font-size: 13px;
+  text-align: center;
+  padding: 22px 0;
+}
+
+.hist-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.hist-item:hover { background: #363a40; }
+
+.hist-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.hist-expr {
+  color: #9aa0a6;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hist-eq { color: #5f6368; }
+
+.hist-result {
+  color: #ffffff;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.hist-time {
+  color: #6d7278;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.hist-del {
+  border: none;
+  background: none;
+  color: #9aa0a6;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.hist-del:hover { color: #ff8a80; background: #3c4043; }
+
+/* ---------- 显示区 ---------- */
+.display {
+  background: #202124;
+  padding: 8px 10px 14px;
+  margin-bottom: 8px;
+}
+
+/* 表达式输入框 */
+.expr-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #9aa0a6;
+  font-size: 18px;
+  font-family: "Segoe UI", "Microsoft YaHei", system-ui, sans-serif;
+  text-align: right;
+  padding: 2px 0 6px;
+  caret-color: #1a73e8;
+}
+
+.expr-input::placeholder { color: #5f6368; }
+
+.display-top {
+  display: flex;
+  justify-content: space-between;
+  min-height: 22px;
+}
+
+.mem {
+  color: #fbbc04;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.expr {
+  color: #9aa0a6;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.main {
+  text-align: right;
+  font-size: 42px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.15;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  min-height: 50px;
+}
+
+.main.error {
+  color: #ff8a80;
+  font-size: 22px;
+  line-height: 2.3;
+}
+
+/* ---------- 按键区 ---------- */
+.keys {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+}
+
+.key {
+  height: 56px;
+  border: none;
+  border-radius: 8px;
+  font-size: 19px;
+  font-weight: 600;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.12s ease;
+}
+
+.key.ghost {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.key.func { background: #5f6368; }
+.key.digit { background: #3c4043; }
+.key.op { background: #4d5a6d; }
+.key.eq { background: #1a73e8; }
+
+.key:hover { filter: brightness(1.18); }
+.key:active { filter: brightness(0.9); }
+
+.key.eq {
+  grid-column: 1 / -1;
+  height: 64px;
+  font-size: 26px;
+}
+
+/* 小屏适配 */
+@media (max-width: 460px) {
+  .calculator { width: 100%; border-radius: 0; }
+  .key { height: 52px; }
+}
