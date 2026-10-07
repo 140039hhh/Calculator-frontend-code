@@ -22,8 +22,10 @@ const memLabel = document.getElementById("mem-label");
 
 // ---------- 后端调用 ----------
 
+const API_BASE = "https://calculator-backend-code-1.onrender.com";
+
 async function callApi(path, body) {
-  const res = await fetch(path, {
+  const res = await fetch(API_BASE + path, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
@@ -245,7 +247,7 @@ let histOpen = false;
 
 async function loadHistory() {
   try {
-    const res = await fetch("/api/history");
+    const res = await fetch(API_BASE + "/api/history");
     const data = await res.json();
     renderHistory(data.list || []);
   } catch (e) {
@@ -283,14 +285,14 @@ function refreshHistoryIfOpen() {
 
 async function deleteHistory(id) {
   try {
-    await fetch("/api/history/" + encodeURIComponent(id), { method: "DELETE" });
+    await fetch(API_BASE + "/api/history/" + encodeURIComponent(id), { method: "DELETE" });
     loadHistory();
   } catch (e) { /* 忽略 */ }
 }
 
 async function clearHistory() {
   try {
-    await fetch("/api/history", { method: "DELETE" });
+    await fetch(API_BASE + "/api/history", { method: "DELETE" });
     loadHistory();
   } catch (e) { /* 忽略 */ }
 }
